@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.contexthub.awareness" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.chaione.awareness.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.chaione.awareness.permission.C2D_MESSAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:name=".AwarenessApp">
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.BeaconsActivity"
+            android:label="@string/beacon"/>
+        <activity
+            android:name=".ui.GeofencesActivity"
+            android:label="@string/geofence"/>
+        <activity
+            android:name=".ui.PushActivity"
+            android:label="@string/push"/>
+        <activity
+            android:name=".ui.VaultActivity"
+            android:label="@string/vault"/>
+
+        <!-- Handles all events and passes them along to the corresponding handlers -->
+        <service
+            android:name="com.chaione.contexthub.sdk.IntentService"
+            android:enabled="true" >
+        </service>
+
+        <!-- GCM Receiver for Push Notifications -->
+        <receiver
+            android:name="com.chaione.contexthub.sdk.push.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.chaione.awareness.android" />
+            </intent-filter>
+        </receiver>
+
+
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+    </application>
+
+</manifest>
