@@ -56,7 +56,7 @@ The heart and true purpose of ContextHub involves creating contextual experience
 6. Testing your context makes it possible to debug changes to your rule before saving them for production.
 
 ## Special Context Rule - Tick
-The "tick" context is a special contextual rule that automatically gets fired once every minute. This allows your applic ation to run code in the absence of an event. Using the JavaScript Date() object, you can use the tick context to have something happen roughly at a specific time.
+The "tick" context is a special contextual rule that automatically gets fired once every minute. This allows your application to run code in the absence of an event. Using the JavaScript Date() object, you can use the tick context to have something happen roughly at a specific time.
 
 ## Sample Code
 In this sample, each event is triggered with a call to `SensorPipeline.triggerEvent(SensorPipelineEvent event)` with custom data passed to ContextHub. When paired with a matching context rule with the same event type, the context rule is evaluated by running your JavaScript code. Events fired in this manner have a data field filled with your JSON-serializable data structure, along with the usual context package detailing information about the device which generated the event. A context rule is then evaluated with either a `true` indicating everything worked OK or an error message if the rule was written incorrectly.
